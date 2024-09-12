@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order - Sreyas Cafe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Your styles here */
+    </style>
+    <script>
+        function submitOrder() {
+            const orders = [];
+            const items = document.querySelectorAll('.item');
+            items.forEach((item) => {
+                const itemName = item.querySelector('select').value;
+                const quantity = item.querySelector('input').value;
+                if (itemName !== "None") {
+                    orders.push({ item: itemName, quantity: quantity });
+                }
+            });
+
+            fetch('/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ items: orders }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                displayConfirmation(orders, data.id);
+            });
+        }
+
+        function displayConfirmation(orders, orderId) {
+            const bill = orders.map(order => `Item: ${order.item}, Quantity: ${order.quantity}`).join('<br>');
+            const popup = document.querySelector('.confirmationPopup');
+            popup.style.display = 'block';
+            popup.classList.remove('slideOut');
+            popup.classList.add('slideIn');
+            document.getElementById('bill').innerHTML = `Order ID: ${orderId}<br>` + bill;
+        }
+
+        function closePopup() {
+            const popup = document.querySelector('.confirmationPopup');
+            popup.classList.add('slideOut');
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 500);
+        }
+
+        function toggleQuantityInput(selectElement) {
+            const quantityInput = selectElement.nextElementSibling.nextElementSibling;
+            if (selectElement.value === "None") {
+                quantityInput.disabled = true;
+                quantityInput.value = "";
+                quantityInput.required = false;
+            } else {
+                quantityInput.disabled = false;
+                quantityInput.required = true;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const selectElements = document.querySelectorAll('select');
+            selectElements.forEach(select => {
+                select.addEventListener('change', (event) => {
+                    toggleQuantityInput(event.target);
+                });
+                toggleQuantityInput(select); // Initialize on page load
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h2>Order from Sreyas Cafe</h2>
+        <div class="topnav-centered">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/menu">Menu</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/order">Order</a></li>
+                </ul>
+            </nav>
+            <li class="admin-login"><a href="/admin">Admin Login</a></li>
+        </div>
+    </header>
+
+    <div class="scrolling-note">
+        <marquee style="color: red;">"Please note: Sreyas Cafe exclusively serves patrons within the SIET campus. We offer take-away services only, with no delivery options available."</marquee>
+    </div>
+
+    <main>
+        <h2 class="pyo">Place Your Order</h2>
+        <form id="orderList" onsubmit="event.preventDefault(); submitOrder();">
+            <div class="item">
+                <label for="item1">Item:</label>
+                <select id="item1" name="item1" onchange="toggleQuantityInput(this)">
+                    <option value="None">None</option>
+                    <option value="Coffee">Coffee</option>
+                    <option value="Tea">Tea</option>
+                    <option value="Sandwich">Sandwich</option>
+                    <option value="Salad">Salad</option>
+                    <option value="Biryani">Biryani</option>
+                    <option value="Chicken-Noodles">Chicken Noodles</option>
+                    <option value="Egg-Noodles">Egg Noodles</option>
+                    <option value="Veg-Noodles">Veg Noodles</option>
+                    <option value="Egg-Rice">Egg Rice</option>
+                    <option value="Chicken-Rice">Chicken Rice</option>
+                    <option value="Veg-Rice">Veg Rice</option>
+                </select>
+                <label for="quantity1">Quantity:</label>
+                <input type="number" id="quantity1" name="quantity1" min="1" required><br>
+            </div>
+            <!-- Add more item sections as needed -->
+            <button type="submit">Submit Order</button>
+        </form>
+        <div class="confirmationPopup">
+            <p>Order Confirmation</p>
+            <p id="bill"></p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sreyas Cafe</p>
+    </footer>
+</body>
+</html>

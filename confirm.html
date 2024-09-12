@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Sreyas Cafe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Order Confirmation</h1>
+        <div class="topnav-centered">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/menu">Menu</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/order">Order</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h2>Thank You for Your Order!</h2>
+        <div id="confirmationDetails"></div>
+        <button onclick="goToOrderPage()">Place Another Order</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sreyas Cafe</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            displayConfirmation();
+        };
+
+        function displayConfirmation() {
+            const orders = JSON.parse(localStorage.getItem('orders'));
+            if (!orders || orders.length === 0) {
+                document.getElementById('confirmationDetails').innerHTML = '<p>No orders found!</p>';
+                return;
+            }
+
+            const confirmationHTML = orders.map(order => `<p>Item: ${order.item}, Quantity: ${order.quantity}</p>`).join('');
+            document.getElementById('confirmationDetails').innerHTML = confirmationHTML;
+        }
+
+        function goToOrderPage() {
+            window.location.href = '/order'; // Change the URL to your order page URL
+        }
+    </script>
+        <!-- Scrolling Note -->
+        <div class="scrolling-note">
+            <marquee>"Please note: Sreyas Cafe exclusively serves patrons within the SIET campus. We offer take-away services only, with no delivery options available."</marquee>
+        </div>
+
+</body>
+</html>

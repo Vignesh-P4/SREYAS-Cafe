@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sreyas Cafe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <style>
+        /* Additional CSS for team section */
+        .team-section {
+            background-color: #f9f9f9;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .team-member {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 250px;
+            height: 250px;
+            border-radius: 20%;
+            margin-bottom: 10px;
+        }
+
+        .team-member h3 {
+            margin-bottom: 5px;
+            font-size: 1.2em;
+        }
+
+        .team-member p {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Sreyas Cafe</h1>
+        <div class="topnav-centered">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/menu">Menu</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/order">Order</a></li>
+                </ul>
+            </nav>
+        </div>
+        <li class="admin-login"><a href="/admin">Admin Login</a></li>
+    </header>
+    <!-- Scrolling Note -->
+    <div class="scrolling-note">
+        <marquee>"Please note: Sreyas Cafe exclusively serves patrons within the SIET campus. We offer take-away services only, with no delivery options available."</marquee>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img src="{{ url_for('static', filename='hero.jpg') }}" alt="Cafe Image"><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="hero-text"><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <p class="t1">Relax and enjoy our freshly brewed coffee and delicious meals.</p>
+                <a href="/menu" class="btn">Explore Our Menu</a>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="introduction">
+            <h2>About Us</h2>
+            <p>Sreyas Cafe has been serving the community with freshly brewed coffee and homemade meals for over a decade. Our mission is to provide a warm and welcoming environment for all our customers.</p>
+        </section>
+
+        <!-- Featured Menu Items -->
+        <section class="featured-menu">
+            <h2>Featured Menu Items</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='/coffee.png') }}" alt="Coffee">
+                    <h3>Fresh Coffee</h3>
+                    <p>Our signature coffee, made from the finest beans.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='ff.webp') }}" alt="fastfood">
+                    <h3>Fast Food</h3>
+                    <p>A perfect blend of fresh ingredients in every bite.</p>
+                </div>
+                <div class="menu-item">
+                    <img src="{{ url_for('static', filename='biryani.jpg') }}" alt="Biryani">
+                    <h3>Biryani</h3>
+                    <p>Enjoy our freshly made biryanis with a variety of spices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Testimonials -->
+        <section class="testimonials">
+            <h2>Customer Testimonials</h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p>"The best coffee I've ever had! Highly recommend Sreyas Cafe."</p>
+                    <h4>- Principal</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"A wonderful place to relax and enjoy a meal. Great service!"</p>
+                    <h4>- Faculty</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"Their sandwiches are amazing. Fresh and tasty every time."</p>
+                    <h4>- Students</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="call-to-action">
+            <h2>Visit Us Today!</h2>
+            <p>Come and enjoy our cozy atmosphere and delicious menu. We can't wait to serve you!</p>
+            <a href="/order" class="btn">Order Now</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sreyas Cafe</p>
+    </footer>
+</body>
+</html>

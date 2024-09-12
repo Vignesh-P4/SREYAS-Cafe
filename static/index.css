@@ -1,0 +1,234 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.admin-login{
+    padding: 4px;
+    background-color: rgb(82, 198, 82);
+    text-decoration:wavy;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+header .topnav-centered {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+
+header nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+header .admin-login {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.hero-text h2 {
+    font-size: 3em;
+}
+
+.hero-text p {
+    font-size: 1.5em;
+}
+
+.hero-text .btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* Introduction Section */
+.introduction {
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.introduction p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2em;
+}
+
+/* Featured Menu Items */
+.featured-menu {
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.menu-items {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    width: 30%;
+    text-align: center;
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.menu-item h3 {
+    margin-top: 10px;
+}
+
+.menu-item p {
+    font-size: 1em;
+}
+
+/* Customer Testimonials */
+.testimonials {
+    background-color: #f9f9f9;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.testimonials-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.testimonial {
+    width: 30%;
+    text-align: center;
+    font-style: italic;
+}
+
+.testimonial p {
+    font-size: 1em;
+}
+
+.testimonial h4 {
+    margin-top: 10px;
+    font-weight: normal;
+}
+
+/* Call to Action */
+.call-to-action {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.call-to-action p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2em;
+}
+
+.call-to-action .btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+h2{
+    color: black;
+}
+.t1{
+    color:black;
+}
+
+/* Other CSS styles */
+
+.scrolling-note {
+    background-color:yellow; /* Light red background */
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    font-size: x-large;
+}

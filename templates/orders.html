@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sreyas Cafe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Your styles here */
+    </style>
+    <script>
+        function fetchOrders() {
+            const orderListDiv = document.getElementById('orderList');
+            orderListDiv.innerHTML = 'Loading orders...';
+
+            fetch('/orders')
+                .then(response => response.json())
+                .then(data => {
+                    orderListDiv.innerHTML = '';
+                    if (data.length === 0) {
+                        orderListDiv.textContent = 'No orders available.';
+                    } else {
+                        data.forEach((order) => {
+                            const orderItem = document.createElement('div');
+                            orderItem.className = 'order-item';
+                            orderItem.innerHTML = `Order ID: ${order.id}, Items: ${order.items.map(item => `${item.quantity} x ${item.item}`).join(', ')}
+                                <button onclick="markAsCompleted(${order.id})">Mark as Completed</button>
+                                <button onclick="removeOrder(${order.id})">Remove</button>`;
+                            orderListDiv.appendChild(orderItem);
+                        });
+                    }
+                })
+                .catch(error => {
+                    orderListDiv.textContent = 'Error fetching orders.';
+                    console.error('Error:', error);
+                });
+        }
+
+        function markAsCompleted(orderId) {
+            fetch(`/mark_completed/${orderId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        fetchOrders();
+                    } else {
+                        alert('Error marking order as completed.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function removeOrder(orderId) {
+            fetch(`/remove_order/${orderId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        fetchOrders();
+                    } else {
+                        alert('Error removing order.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function clearOrders() {
+            fetch('/clear_orders', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        fetchOrders();
+                    } else {
+                        alert('Error clearing orders.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function downloadOrders() {
+            fetch('/orders')
+                .then(response => response.json())
+                .then(orders => {
+                    if (!orders || orders.length === 0) {
+                        alert('No orders to download!');
+                        return;
+                    }
+
+                    const csvContent = "data:text/csv;charset=utf-8,"
+                        + orders.map(order => `${order.item},${order.quantity}`).join('\n');
+
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", "orders.csv");
+                    document.body.appendChild(link);
+                    link.click();
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        window.onload = fetchOrders;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin Panel - Sreyas Cafe</h1>
+        </header>
+        <header>
+            
+            <div class="topnav-centered">
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/menu">Menu</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/order">Order</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <li class="admin-login"><a href="/admin">Admin Login</a></li>
+        </header>
+        <!-- Scrolling Note -->
+        <div class="scrolling-note">
+            <marquee>"Please note: Sreyas Cafe exclusively serves patrons within the SIET campus. We offer take-away services only, with no delivery options available."</marquee>
+        </div>
+    
+        <main>
+            <h2>Orders</h2>
+            <div id="orderList">Loading orders...</div>
+            <button onclick="clearOrders()">Clear Orders</button>
+            <button onclick="download_orders()">Download Orders</button>
+        </main>
+        <footer>
+            <p>&copy; 2024 Sreyas Cafe</p>
+        </footer>
+    </div>
+</body>
+</html>

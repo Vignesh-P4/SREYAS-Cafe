@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Sreyas Cafe</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for Menu Page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-decoration:none;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .topnav-centered {
+            text-align: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffc107;
+        }
+
+        .scrolling-note {
+            background-color:yellow; /* Light red background */
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            font-size: x-large;
+        }
+        
+        
+
+        main {
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-decoration: none;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.03);
+        }
+
+        .menu-item img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+        }
+
+        .menu-item h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .menu-item p {
+            margin-top: 5px;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Menu</h1>
+        <div class="topnav-centered">
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/menu">Menu</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/order">Order</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Scrolling Note -->
+    <div class="scrolling-note">
+        <marquee>"Please note: Sreyas Cafe exclusively serves patrons within the SIET campus. We offer take-away services only, with no delivery options available."</marquee>
+    </div>
+    <main>
+        <h2>Our Menu</h2>
+        <div class="menu-items">
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='/coffee.png') }}" alt="Cafe Image">
+                <div>
+                    <h3>Coffee</h3>
+                    <p>Our signature coffee, made from the finest beans.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='/teas.webp') }}" alt="Cafe Image">
+                <div>
+                    <h3>Tea</h3>
+                    <p>A refreshing blend of tea leaves, perfect any time of the day.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='/sandwich.webp') }}" alt="Cafe Image">
+                <div>
+                    <h3>Sandwich</h3>
+                    <p>A delicious blend of fresh ingredients in every bite.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='/salad.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Salad</h3>
+                    <p>Fresh and healthy, perfect as a side or a meal.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='/biryani.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Biryani</h3>
+                    <p>Enjoy our flavorful biryanis with a variety of spices.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='/ch_noodles.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Chicken Noodles</h3>
+                    <p>Delicious noodles with tender chicken pieces.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='/egg_noodles.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Egg Noodles</h3>
+                    <p>Noodles tossed with scrambled eggs and fresh vegetables.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='veg_noodles.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Veg Noodles</h3>
+                    <p>Vegetarian noodles packed with flavor and nutrition.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='egg_rice.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Egg Rice</h3>
+                    <p>Steamed rice mixed with scrambled eggs and spices.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='ch_rices.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Chicken Rice</h3>
+                    <p>Rice cooked with tender chicken pieces and aromatic spices.</p>
+                </div>
+            </a>
+            <a href="/order" class="menu-item">
+                <img src="{{ url_for('static', filename='veg_rice.jpg') }}" alt="Cafe Image">
+                <div>
+                    <h3>Veg Rice</h3>
+                    <p>Flavorful rice mixed with assorted vegetables.</p>
+                </div>
+            </a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sreyas Cafe</p>
+    </footer>
+</body>
+</html>
